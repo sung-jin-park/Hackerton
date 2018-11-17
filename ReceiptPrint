@@ -17,3 +17,19 @@ div = []
 
 
 print(txt)
+
+while(1): #영수증의 줄 별로 엑셀파일을 저장하기 위한 와일문 
+    if(txt[end] == "\n"):
+        div.append(txt[start:end])
+        start = end + 1
+        i = i+1
+    if(txt[end:end+4] == "SOLD"):
+        break
+    end = end + 1
+
+#엑셀파일로 저장 
+wb = Workbook()
+ws = wb.active
+ws.title = "영수증 정보"
+ws['A1'] = txt
+wb.save('영수증.xlsx')
