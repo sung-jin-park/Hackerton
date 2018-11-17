@@ -30,6 +30,10 @@ while(1): #영수증의 줄 별로 엑셀파일을 저장하기 위한 와일문
 #엑셀파일로 저장 
 wb = Workbook()
 ws = wb.active
+ws2 = wb.create_sheet(title = "second")
 ws.title = "영수증 정보"
-ws['A1'] = txt
+
+for row in range(1,i+1):
+    ws2.cell(row = row, column = 1, value=("{}".format(div[row-1])))
+
 wb.save('영수증.xlsx')
