@@ -2,8 +2,11 @@
 import cv2
 import PIL
 import pytesseract
+import datetime
 from openpyxl import *
 import string
+
+
 img_path = 'C:/test01.jpg' #텍스트로 받을 영수증 사진의 경로
 img = cv2.imread(img_path,cv2.IMREAD_COLOR)
 img2 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -14,6 +17,17 @@ i = 0
 end = 0
 text = txt.partition('\n')
 div = []
+best = []
+
+year = datetime.timedelta(days = 365)#1년
+
+week = datetime.timedelta(days = 7)#1주일
+
+month = datetime.timedelta(days = 30)#1달
+
+start_time = datetime.datetime.now() + year#토마토 소스의 유통기한
+
+tomSauce = start_time - datetime.datetime.now()#토마토 소스가 유통기한이 얼마 남았는지 표시
 
 
 print(txt)
@@ -22,8 +36,8 @@ while(1): #영수증의 줄 별로 엑셀파일을 저장하기 위한 와일문
     if(txt[end] == "\n"):
         div.append(txt[start:end])
         start = end + 1
-        if ("TOM SAUCE" in div[i]): #유통기한을 B셀에 추가 예제로 TOM SAUCE의 항목의 유통기한을 추가해준다.
-            best.append("2018.11.16 ~ 2020.11.16")
+        if ("TOM SAUCE" in div[i]): #유통기한을 일수로 표시
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
         else:
             best.append(" ")
         i += 1
