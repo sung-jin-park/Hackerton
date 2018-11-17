@@ -33,7 +33,10 @@ ws = wb.active
 ws2 = wb.create_sheet(title = "second")
 ws.title = "영수증 정보"
 
-for row in range(1,i+1):
-    ws2.cell(row = row, column = 1, value=("{}".format(div[row-1])))
+for row in range(1,i+1): #엑셀파일에서 A셀에 품명, B셀에 유통기한을 저장하기 위한 코드 
+                         #에러 수정 필요
+    for col in range(1,2):
+        ws2.cell(row = row, column = col, value=("{}{}".format(div[row-1],best[row-1])))
+
 
 wb.save('영수증.xlsx')
