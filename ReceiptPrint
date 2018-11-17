@@ -22,7 +22,11 @@ while(1): #영수증의 줄 별로 엑셀파일을 저장하기 위한 와일문
     if(txt[end] == "\n"):
         div.append(txt[start:end])
         start = end + 1
-        i = i+1
+        if ("TOM SAUCE" in div[i]): #유통기한을 B셀에 추가 예제로 TOM SAUCE의 항목의 유통기한을 추가해준다.
+            best.append("2018.11.16 ~ 2020.11.16")
+        else:
+            best.append(" ")
+        i += 1
     if(txt[end:end+4] == "SOLD"):
         break
     end = end + 1
@@ -33,10 +37,10 @@ ws = wb.active
 ws2 = wb.create_sheet(title = "second")
 ws.title = "영수증 정보"
 
-for row in range(1,i+1): #엑셀파일에서 A셀에 품명, B셀에 유통기한을 저장하기 위한 코드 
-                         #에러 수정 필요
-    for col in range(1,2):
-        ws2.cell(row = row, column = col, value=("{}{}".format(div[row-1],best[row-1])))
+for row in range(1,i+1): 
+    ws2.cell(row = row, column = 1, value=("{}".format(div[row-1])))
+    ws2.cell(row=row, column=2, value=("{}".format(best[row - 1])))
+
 
 
 wb.save('영수증.xlsx')
