@@ -14,3 +14,12 @@ saveas="{}{}".format(time,'.png')
 img.save(saveas) # 화면 캡쳐
 
 img.show() #촬영한 이미지를 보여준다.
+
+
+
+#외부 프로그램 실행
+import os
+
+os.startfile('EOS Utility')
+#사진편집기인 EOS Utility를 파이썬에서 연다.
+
