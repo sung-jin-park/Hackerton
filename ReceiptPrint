@@ -1,0 +1,16 @@
+#화면을 캡쳐하는 코드
+
+from PIL import ImageGrab #모듈 임포트
+import time
+
+now = time.localtime()
+time = "%04d-%02d-%02d-%02dh-%02dm-%02ds" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec)
+#현재 날짜 및 시간을 저장
+
+img = ImageGrab.grab(bbox=(0, 0, 672, 4200))#img변수에 함수 넣음  #x좌표시작점 ,  y좌표 시작점, x의 길이, y의 길이
+saveas="{}{}".format(time,'.png')
+#저장한 현재 날짜 및 시간.png로 저장
+
+img.save(saveas) # 화면 캡쳐
+
+img.show() #촬영한 이미지를 보여준다.
