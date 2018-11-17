@@ -1,70 +1,99 @@
-import cv2
-import PIL
-import pytesseract
-import datetime
+import cv2 # OpenCV라이브러리 사용
+import PIL # 이미지 라이브버리로 OpenCV의 영상처리 기능을 대체한다.
+import pytesseract # 이미지내에서 문자를 추출하기 위한 OCR기술을 오픈소스로 제공받는다
+import datetime # 시간을 다루기 위한 모듈
 from openpyxl import *
 import string
-
-img_path = 'C:/test01.jpg'
-
+img_path = 'C:/test01.jpg' # 경로 설정
 img = cv2.imread(img_path,cv2.IMREAD_COLOR)
-
 img2 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
 img2 = PIL.Image.fromarray(img2)
-
 txt = pytesseract.image_to_string(img2, lang='eng')
-
 start = 0
-
 end = 0
-
-div = []
-
-best = []
+div = [] # 리스트 생성
+best = [] # 리스트 생성
 
 i = 0
 
 
-year = datetime.timedelta(days = 365)#1년
+year = datetime.timedelta(days = 365) # 1년
 
-week = datetime.timedelta(days = 7)#1주일
+week = datetime.timedelta(days = 7) # 1주일
 
-month = datetime.timedelta(days = 30)#1달
+month = datetime.timedelta(days = 30) # 1달
+#토마토
+TOMATO = datetime.datetime.now() + year # 토마토 소스의 유통기한
+TOMATO = TOMATO - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#토마토소스
+TOM = datetime.datetime.now() + year # 토마토 소스의 유통기한
+TOM = TOM - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#SUGAR
+SUGAR = datetime.datetime.now() + year # 토마토 소스의 유통기한
+SUGAR = SUGAR - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#MEAL
+MEAL = datetime.datetime.now() + year # 토마토 소스의 유통기한
+MEAL = MEAL - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#SALT
+SALT = datetime.datetime.now() + year # 토마토 소스의 유통기한
+SALT = SALT - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#PEANUT
+PEANUT = datetime.datetime.now() + year # 토마토 소스의 유통기한
+PEANUT = PEANUT - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#BUTTR
+BUTTR = datetime.datetime.now() + year # 토마토 소스의 유통기한
+BUTTR = BUTTR - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#HALFHALF
+HALFHALF = datetime.datetime.now() + year # 토마토 소스의 유통기한
+HALFHALF = HALFHALF - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#RICE
+RICE = datetime.datetime.now() + year # 토마토 소스의 유통기한
+RICE = RICE - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+# SIMADV
+SIMADV = datetime.datetime.now() + year  # 토마토 소스의 유통기한
+SIMADV = SIMADV - datetime.datetime.now()  # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#NUTELLA
+NUTELLA = datetime.datetime.now() + year # 토마토 소스의 유통기한
+NUTALLE = NUTELLA - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#COKE
+COKE = datetime.datetime.now() + year # 토마토 소스의 유통기한
+COKE = COKE - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
+#RAMEN
+RAMEN = datetime.datetime.now() + year # 토마토 소스의 유통기한
+RAMEN = RAMEN - datetime.datetime.now() # 토마토 소스가 유통기한이 얼마 남았는지 표시
 
-start_time = datetime.datetime.now() + year#토마토 소스의 유통기한
-
-tomSauce = start_time - datetime.datetime.now()#토마토 소스가 유통기한이 얼마 남았는지 표시
-
-
-
+#콘솔에 문자를 출력한다.
 print(txt)
-while(1):
+while(1): # 반복문 실행
     if(txt[end] == "\n"):
         div.append(txt[start:end])
         start = end + 1
-        if ("TOM SAUCE" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
-        elif("품목명" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
-        elif ("품목명" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
-        elif ("품목명" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
-        elif ("품목명" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
-        elif ("품목명" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
-        elif ("품목명" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
-        elif ("품목명" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
-        elif ("품목명" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
-        elif ("품목명" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
-        elif ("품목명" in div[i]):
-            best.append('유통기한 까지는 {}일 남았습니다.'.format(tomSauce.days, tomSauce.seconds // 3600))
+        if ("TOMATO" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(TOMATO.days, TOM.seconds // 3600))
+        elif ("TOM" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(TOM.days, TOM.seconds // 3600))
+        elif("SUGAR" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(SUGAR.days, SUGAR.seconds // 3600))
+        elif ("MEAL" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(MEAL.days, MEAL.seconds // 3600))
+        elif ("SALT" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(SALT.days, SALT.seconds // 3600))
+        elif ("PEANUT" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(PEANUT.days, PEANUT.seconds // 3600))
+        elif ("BUTTR" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(BUTTR.days, BUTTR.seconds // 3600))
+        elif ("HALF HALF" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(HALFHALF.days, HALFHALF.seconds // 3600))
+        elif ("RICE" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(RICE.days, RICE.seconds // 3600))
+        elif ("RAMEN" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(RAMEN.days,  RAMEN.seconds // 3600))
+        elif ("SIM ADV" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(SIMADV.days, SIMADV.seconds // 3600))
+        elif ("NUTELLA" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(NUTELLA.days, NUTELLA.seconds // 3600))
+        elif ("COKE" in div[i]):
+            best.append('유통기한 까지는 {}일 남았습니다.'.format(COKE.days, COKE.seconds // 3600))
         else:
             best.append (" ")
         i = i+1
@@ -75,17 +104,24 @@ while(1):
     end = end + 1
 
 
-wb = Workbook()
+wb= Workbook()
 ws = wb.active
 ws2 = wb.create_sheet(title = "second")
+## ws2 = wb.create_sheet(title = "식로품 유통기한") #으로 바꾸는게 어떨지
 ws.title = "영수증 정보"
 
 for row in range(1,i+1):
-    ws2.cell(row = row, column = 1, value=("{}".format(div[row-1])))
-    ws2.cell(row=row, column=2, value=("{}".format(best[row - 1])))
+    ws2.cell(row = row, column = 1, value=("{}".format(div[row - 1])))
+    ws2.cell(row = row, column = 2, value=("{}".format(best[row - 1])))
 
 
 
-wb.save('영수증1.xlsx')
+# 엑셀 파일 저장
+wb.save('영수증.xlsx')
+
+#여기부터 문자 인식하기
+
+
+
 
 
